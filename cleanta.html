@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#06101d"><title>CleanTA | TAstore</title>
+<style>:root{--accent:#b9ed58;--accent2:#e6b45c}
+/* TAstore master brand: use the same mark on every product page. */
+.brand-mark.tastore-logo{width:42px;height:42px;box-sizing:border-box;flex:none;display:flex;align-items:center;justify-content:center;border-radius:50%;overflow:hidden;background:#fff;border:2px solid #2ab9ff;box-shadow:0 0 20px #159dff55;font-family:Arial,sans-serif;font-size:20px;font-style:italic;font-weight:900;letter-spacing:-1.5px;line-height:1;color:#159cff}
+.brand-mark.tastore-logo b{color:#ff7a2f;font-weight:950}
+.brand-mark.tastore-logo i{color:#159cff;font-style:italic}
+.brand-name{display:flex;align-items:baseline;white-space:nowrap;font-size:18px;line-height:1;font-weight:850;letter-spacing:-1.1px;font-style:italic;color:#fff}
+.brand-name b{color:#ff7a2f;font-weight:950}
+.brand-name i{color:#159cff;font-style:italic;font-weight:950}
+.brand-name em{color:#fff;font-style:italic;font-weight:850}
+@media(max-width:760px){.brand-mark.tastore-logo{width:37px;height:37px;font-size:18px}}
+</style>
+<style>
+:root{color-scheme:dark;--bg:#06101d;--panel:#0b1929;--line:#243a54;--text:#f4f7fb;--muted:#a9b7c8;--accent:#35b9ff;--accent2:#ff8150}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 78% 8%,#164d5966,transparent 29%),linear-gradient(145deg,#06101d,#020812 75%);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:inherit}
+.wrap{max-width:1120px;margin:auto;padding:0 28px}
+.top{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff12}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:800;font-size:18px}
+.brand-mark{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;font-weight:900;font-size:17px;color:#fff;background:#111922;border:1px solid #ffffff1a;box-shadow:0 0 24px color-mix(in srgb,var(--accent) 20%,transparent)}
+.brand-name span{color:var(--accent)}
+.back{font-size:13px;color:#c5d1de;text-decoration:none;padding:10px 15px;border:1px solid #ffffff20;border-radius:20px}
+.back:hover{border-color:var(--accent);color:white}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:58px 0 52px}
+.crumb{font-size:12px;color:#8da0b8;letter-spacing:.08em;text-transform:uppercase}
+.crumb a{text-decoration:none;color:#bdc9d8}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin:19px 0 24px}
+.badges span{border:1px solid #ffffff20;background:#ffffff08;border-radius:99px;padding:8px 12px;color:#d7e1ec;font-size:12px}
+.badges .status{border-color:#e4ad4c55;background:#d99b2418;color:#ffd889}
+h1{font-size:clamp(39px,5.3vw,62px);line-height:1.02;letter-spacing:-.055em;margin:17px 0}
+h1 span{color:var(--accent)}
+.lead{font-size:17px;line-height:1.65;color:#c4d0de;max-width:560px;margin:0 0 22px}
+.actions{display:flex;gap:11px;flex-wrap:wrap}
+.button{display:inline-flex;justify-content:center;align-items:center;padding:12px 17px;border-radius:13px;text-decoration:none;font-size:13px;font-weight:750}
+.primary{background:linear-gradient(100deg,#1097cf,var(--accent));box-shadow:0 9px 25px #138f9840}
+.secondary{border:1px solid #ffffff26;background:#ffffff08}
+.note{font-size:12px;color:#91a2b5;line-height:1.6;margin-top:17px}
+.preview{padding:16px;border:1px solid color-mix(in srgb,var(--accent) 50%,#203047);border-radius:25px;background:linear-gradient(145deg,#101d35,#091321);box-shadow:0 28px 80px #0008}
+.preview-screen{min-height:315px;position:relative;overflow:hidden;border-radius:17px;padding:22px;background:radial-gradient(circle at 50% 42%,color-mix(in srgb,var(--accent) 20%,transparent),transparent 48%),#071321}
+.statusbar{display:flex;justify-content:space-between;font-size:10px;color:#c4d0de}
+.bubble-layout{height:240px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:14px}
+.speed-ring{width:164px;height:164px;margin:auto;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--accent2) 0 77%,#ffffff16 77%);padding:10px;box-shadow:0 0 35px color-mix(in srgb,var(--accent2) 20%,transparent)}
+.speed-face{width:100%;height:100%;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#f4f7fb;color:#121923}
+.speed-face b{font-size:45px;line-height:1}.speed-face small{font-weight:800;font-size:12px;margin-top:5px}
+.preview-info{padding:16px;border:1px solid #ffffff17;border-radius:15px;background:#0d1b2d}
+.preview-info small{display:block;color:#97aabd;font-size:10px;margin-bottom:8px}
+.preview-info strong{display:block;font-size:14px}
+.preview-info p{color:#aebdcd;font-size:11px;line-height:1.5;margin:8px 0 0}
+.caption{font-size:11px;color:#8fa0b4;margin-top:11px;text-align:center}
+.section{padding:40px 0;border-top:1px solid #ffffff12}
+.kicker{font-size:11px;color:var(--accent);letter-spacing:.14em;text-transform:uppercase}
+h2{font-size:28px;letter-spacing:-.035em;margin:9px 0 10px}
+.section-intro{color:var(--muted);line-height:1.6;max-width:720px;margin:0 0 22px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.tile{padding:19px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#102139aa,#091321)}
+.tile .icon{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent);font-weight:900}
+.tile h3{font-size:15px;margin:13px 0 7px}
+.tile p{font-size:13px;color:#adbdcf;line-height:1.58;margin:0}
+.callout{padding:17px 19px;border-left:3px solid var(--accent2);border-radius:0 13px 13px 0;background:#ff8a4210;color:#d6c8bc;font-size:13px;line-height:1.6;margin-top:18px}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.info{padding:20px;border:1px solid var(--line);border-radius:16px;background:#0a1726}
+.info h3{font-size:15px;margin:0 0 10px}
+.info-row{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-top:1px solid #ffffff12;font-size:12px}
+.info-row span:first-child{color:#98a9bd}
+.info-row span:last-child{text-align:right;color:#e1e9f2}
+.pending{color:#ffd889!important}
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+details{border:1px solid #ffffff18;background:#ffffff06;border-radius:13px;padding:15px}
+summary{cursor:pointer;font-weight:700;font-size:13px}
+details p{color:#acbbcc;font-size:12px;line-height:1.6;margin-bottom:0}
+.footer{padding:27px 0 35px;border-top:1px solid #ffffff12;color:#8392a5;font-size:12px;display:flex;justify-content:space-between}
+.footer a{text-decoration:none;color:#b6c5d5}
+@media(max-width:800px){.hero{grid-template-columns:1fr;gap:28px;padding:42px 0}.preview{max-width:650px;width:100%}.grid{grid-template-columns:1fr}.info-grid{grid-template-columns:1fr}}
+@media(max-width:540px){.wrap{padding:0 17px}.top{height:68px}.brand-mark{width:37px;height:37px}.brand{font-size:16px}.back{padding:9px 11px;font-size:11px}.hero{padding:34px 0 38px}h1{font-size:42px}.lead{font-size:15px}.preview{padding:9px}.preview-screen{min-height:285px;padding:15px}.bubble-layout{height:225px;grid-template-columns:1fr 1fr;gap:7px}.speed-ring{width:130px;height:130px;padding:8px}.speed-face b{font-size:37px}.preview-info{padding:11px}.section{padding:32px 0}h2{font-size:24px}.faq{grid-template-columns:1fr}.footer{display:block}.footer span{display:block;margin-top:8px}}
+</style>
+<link rel="stylesheet" href="assets/store-polish.css?v=20260928-1"><script src="assets/site.js?v=20260928-1" defer></script></head><body><div class="wrap">
+<header class="top"><a class="brand" href="./" aria-label="Về TAstore"><span class="brand-mark tastore-logo" aria-hidden="true"><b>T</b><i>A</i></span><span class="brand-name"><b>T</b><i>A</i><em>store</em></span></a><a class="back" href="./#products">← Tất cả sản phẩm</a></header>
+<nav class="product-nav" aria-label="Các sản phẩm TA"><a href="./#products">Tất cả</a><a href="connectta.html">ConnectTA</a><a href="bubbleta.html">BubbleTA</a><a href="multita.html">MultiTA</a><a href="cleanta.html" aria-current="page">CleanTA</a><a href="hometa.html">HomeTA</a><a href="driveta.html">DriveTA</a><a href="./#support">Hỗ trợ</a></nav><main>
+<section class="hero"><div><div class="crumb"><a href="./">TAstore</a>　/　Sản phẩm　/　CleanTA</div>
+<div class="badges"><span>Rootless / Roothide</span><span>CarPlay</span><span class="status">Chưa mở phát hành</span></div><div class="compat-summary"><p><strong>Hỗ trợ</strong> Rootless/Roothide · iOS 15–16</p><p><strong>Đang phát triển</strong> iOS 17, 18–26.0</p></div>
+<h1>CarPlay gọn nhẹ,<br><span>hành trình mượt hơn</span></h1><p class="lead">Đóng ứng dụng CarPlay không dùng và làm mới phiên hiển thị — hướng đến giao diện ngăn nắp, trải nghiệm nhẹ nhàng hơn trên mỗi hành trình. Bản rootless đã được thử thành công. Roothide iOS 15 đang chờ sửa lỗi trước khi mở cài đặt.</p>
+<div class="actions"><a class="button secondary" href="#features">Khám phá CleanTA ↓</a></div>
+<p class="note">CleanTA hiện chưa xóa cache hoặc điều khiển nhiệt độ; chưa thể cam kết giảm nóng máy, hết giật lag hay giải phóng RAM. Khả năng tương thích cần được kiểm tra theo từng thiết bị.</p></div>
+<div class="preview"><div class="preview-screen"><div class="statusbar"><b>TAstore • BẢN MINH HỌA</b><span>CarPlay</span></div>
+<div class="bubble-layout"><img class="cleanta-product-icon" src="assets/cleanta-icon.svg" alt="Logo CleanTA" width="160" height="160" style="display:block;width:clamp(100px,30vw,160px);height:auto;flex:none;border-radius:24%;filter:drop-shadow(0 12px 25px #0005)">
+<div class="preview-info"><small>TRẠNG THÁI HIỆN TẠI</small><strong>Rootless đã thử</strong><p>Đã thử thành công trên rootless. Roothide iOS 15 đang được sửa lỗi; phần cài đặt tạm ngắt.</p></div></div></div><div class="caption">Minh họa giao diện, không phải ảnh chụp bản phát hành.</div></div>
+</section>
+<section class="section" id="features"><div class="kicker">Mục tiêu sử dụng</div><h2>Phiên CarPlay gọn hơn, tập trung hơn</h2><p class="section-intro">CleanTA hướng đến việc dọn gọn phiên CarPlay: đóng ứng dụng không dùng và làm mới danh sách hiển thị để thao tác tiếp thuận tiện hơn.</p><div class="grid"><article class="tile"><div class="icon">×</div><h3>Đóng ứng dụng không dùng</h3><p>Gửi yêu cầu kết thúc phiên ứng dụng CarPlay đang mở. Một số ứng dụng có thể tự khởi động lại; kết quả tùy ứng dụng.</p></article><article class="tile"><div class="icon">↻</div><h3>Làm mới giao diện CarPlay</h3><p>Thử cập nhật danh sách ứng dụng hiển thị sau thao tác, giúp phiên CarPlay trở lại trạng thái gọn gàng hơn.</p></article><article class="tile"><div class="icon">◌</div><h3>Hướng đến trải nghiệm ổn định</h3><p>Giảm ứng dụng không cần thiết là mục tiêu. Tốc độ, nhiệt độ và độ mượt còn phụ thuộc thiết bị, iOS và ứng dụng.</p></article></div><div class="callout">Minh bạch về tác dụng: CleanTA chưa xóa cache/dữ liệu, chưa kiểm soát nhiệt độ và chưa bảo đảm giải phóng RAM hay khắc phục giật lag. Bản Roothide iOS 15 chưa sẵn sàng.</div></section>
+<section class="section"><div class="kicker">Tương thích và phát hành</div><h2>Thông tin hiện có</h2><div class="info-grid"><div class="info"><h3>Môi trường kiểm thử</h3><div class="info-row"><span>Thiết bị</span><span class="pending">Rootless/Roothide · iOS 15–16</span></div><div class="info-row"><span>Khởi chạy CarPlay</span><span class="pending">Tùy cấu hình thiết bị và bản kiểm thử</span></div></div><div class="info"><h3>Phát hành</h3><div class="info-row"><span>Đóng ứng dụng</span><span class="pending">Đã thử thành công trên rootless</span></div><div class="info-row"><span>Phát hành</span><span class="pending">Tạm ngắt cài đặt · Chờ sửa Roothide iOS 15</span></div></div></div></section>
+<section class="section"><div class="kicker">Hỏi đáp</div><h2>Trước khi CleanTA ra mắt</h2><div class="faq"><details><summary>CleanTA có làm máy mát hơn và hết lag không?</summary><p>Chưa thể hứa điều đó. CleanTA chưa đo nhiệt độ, chưa dọn cache và chưa có số đo chứng minh mức giảm nhiệt hoặc tăng hiệu năng. Tác dụng thực tế tùy thiết bị, iOS và ứng dụng.</p></details><details><summary>CleanTA có xóa cache hoặc giải phóng RAM không?</summary><p>Không. CleanTA chưa xóa cache/dữ liệu và không bảo đảm giải phóng bộ nhớ.</p></details><details><summary>CleanTA đang thử làm gì?</summary><p>Tiện ích gửi yêu cầu đóng ứng dụng CarPlay không dùng và làm mới danh sách hiển thị, với mục tiêu giữ phiên CarPlay gọn gàng hơn.</p></details></div></section>
+</main><footer class="footer"><span>TAstore　•　DRIVE SMARTER, ENJOY MORE</span><span><a href="./#products">← Về cửa hàng</a></span></footer>
+</div></body></html>

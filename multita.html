@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#06101d">
+<title>MultiTA — Hai ứng dụng, một màn hình CarPlay | TAstore</title>
+<style>
+:root{color-scheme:dark;--bg:#06101d;--panel:#0b1929;--line:#243a54;--text:#f4f7fb;--muted:#a9b7c8;--blue:#39baff;--violet:#9b72ff}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 78% 8%,#25377866,transparent 28%),linear-gradient(145deg,#06101d,#020812 75%);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:inherit}
+.wrap{max-width:1180px;margin:auto;padding:0 28px}
+.top{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff12}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand-mark{width:42px;height:42px;border-radius:13px;overflow:hidden;box-shadow:0 0 24px #7c8cff33}
+.brand-mark svg{width:100%;height:100%;display:block}
+.brand-name{font-weight:800;font-size:18px;letter-spacing:-.5px}
+.brand-name span{color:#54baff}
+.back{font-size:13px;color:#c5d1de;text-decoration:none;padding:10px 15px;border:1px solid #ffffff20;border-radius:20px}
+.back:hover{border-color:#8a70ff;color:white}
+.hero{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center;padding:64px 0 58px}
+.crumb{font-size:12px;color:#8da0b8;letter-spacing:.08em;text-transform:uppercase}
+.crumb a{text-decoration:none;color:#aebcd0}
+h1{font-size:clamp(42px,5.5vw,68px);line-height:.98;letter-spacing:-.055em;margin:18px 0}
+h1 span{color:#a98aff}
+.lead{font-size:18px;line-height:1.65;color:#c4d0de;max-width:520px;margin:0 0 22px}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 27px}
+.badges span{border:1px solid #ffffff20;background:#ffffff08;border-radius:99px;padding:8px 12px;color:#d7e1ec;font-size:12px}
+.badges .status{border-color:#e4ad4c55;background:#d99b2418;color:#ffd889}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.button{display:inline-flex;justify-content:center;align-items:center;padding:13px 18px;border-radius:13px;text-decoration:none;font-size:14px;font-weight:750}
+.primary{background:linear-gradient(100deg,#7252e8,#358ff4);box-shadow:0 9px 25px #5035a644}
+.secondary{border:1px solid #ffffff26;background:#ffffff08}
+.note{font-size:12px;color:#8193a8;line-height:1.55;margin-top:18px}
+.preview{position:relative;padding:14px;border:1px solid #526ca0;border-radius:27px;background:linear-gradient(145deg,#101d35,#091321);box-shadow:0 28px 80px #0008,0 0 45px #5975ff18}
+.screen{height:310px;border-radius:18px;background:#071321;overflow:hidden;position:relative;padding:30px 12px 12px}
+.statusbar{position:absolute;left:16px;right:16px;top:10px;display:flex;justify-content:space-between;color:#d8e4f2;font-size:10px}
+.panes{height:100%;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pane{position:relative;border:1px solid #ffffff1b;border-radius:14px;overflow:hidden}
+.map-pane{background:linear-gradient(135deg,#164257,#112738)}
+.map-road{position:absolute;height:8px;border-radius:9px;background:#95bdd344;transform-origin:left}
+.road-a{width:135%;top:31%;left:-12%;transform:rotate(27deg)}
+.road-b{width:125%;top:72%;left:-5%;transform:rotate(-25deg)}
+.road-c{width:80%;top:10%;left:52%;transform:rotate(85deg)}
+.map-label{position:absolute;top:14px;left:13px;padding:7px 9px;border-radius:9px;background:#061522aa;font-size:10px}
+.speed{position:absolute;right:13px;top:43%;width:48px;height:48px;border:5px solid #fa514d;border-radius:50%;display:grid;place-items:center;background:#fff;color:#111;font-weight:850;font-size:15px}
+.route{position:absolute;left:13px;bottom:14px;font-size:11px;color:#e6f2ff}
+.media-pane{background:linear-gradient(145deg,#241b44,#121a34);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:11px}
+.album{width:100px;height:100px;border-radius:18px;background:radial-gradient(circle at 28% 20%,#ffcf72,#f45e91 43%,#5d58d7 78%);display:grid;place-items:center;font-size:26px;box-shadow:0 12px 28px #0006}
+.track{text-align:center}.track b{display:block;font-size:13px}.track small{font-size:10px;color:#b9c2d4}
+.controls{display:flex;gap:17px;align-items:center;color:#ebf1fb;font-size:14px}
+.divider{position:absolute;left:50%;top:42px;bottom:24px;width:3px;border-radius:5px;background:#b29aff;box-shadow:0 0 15px #a085ff99}
+.grip{position:absolute;top:47%;left:50%;transform:translate(-50%,-50%);width:20px;height:48px;border-radius:12px;background:#a78bfa;display:grid;place-items:center;color:#25134f;font-size:13px;font-weight:900}
+.caption{display:flex;justify-content:space-between;gap:12px;margin-top:13px;font-size:11px;color:#a7b6ca}
+.section{padding:46px 0;border-top:1px solid #ffffff12}
+.kicker{font-size:11px;color:#91a6c1;letter-spacing:.14em;text-transform:uppercase}
+h2{font-size:30px;letter-spacing:-.035em;margin:9px 0 10px}
+.section-intro{color:var(--muted);line-height:1.6;max-width:620px;margin:0 0 23px}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.feature{padding:20px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,#102139aa,#091321)}
+.feature-icon{width:38px;height:38px;border-radius:12px;background:#8d6bff22;border:1px solid #9d7dff44;display:grid;place-items:center;color:#c1aaff;font-weight:800}
+.feature h3{font-size:16px;margin:14px 0 7px}
+.feature p{font-size:13px;color:#adbdcf;line-height:1.6;margin:0}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;counter-reset:step}
+.step{padding:20px;border-radius:16px;background:#ffffff07;border:1px solid #ffffff16;counter-increment:step}
+.step:before{content:"0" counter(step);font-size:12px;color:#b49aff;letter-spacing:.1em}.step-symbol{display:inline-flex;width:19px;height:19px;vertical-align:-5px;margin:0 3px;border-radius:5px;overflow:hidden}.step-symbol svg{display:block;width:100%;height:100%}
+.step h3{font-size:15px;margin:12px 0 6px}
+.step p{font-size:13px;color:#afbdcf;line-height:1.55;margin:0}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.info{padding:22px;border:1px solid var(--line);border-radius:17px;background:#0a1726}
+.info h3{font-size:16px;margin:0 0 14px}
+.info-row{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-top:1px solid #ffffff12;font-size:13px}
+.info-row span:first-child{color:#98a9bd}.info-row span:last-child{text-align:right;color:#e1e9f2}
+.pending{color:#ffd889!important}
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.faq details{border:1px solid #ffffff18;background:#ffffff06;border-radius:14px;padding:16px}
+.faq summary{cursor:pointer;font-weight:700;font-size:14px}
+.faq p{color:#acbbcc;font-size:13px;line-height:1.6;margin-bottom:0}
+.footer{padding:30px 0 38px;border-top:1px solid #ffffff12;color:#74869c;font-size:12px;display:flex;justify-content:space-between}
+@media(max-width:800px){.hero{grid-template-columns:1fr;gap:32px;padding:44px 0}.preview{max-width:620px}.feature-grid,.steps{grid-template-columns:1fr}.info-grid{grid-template-columns:1fr}}
+@media(max-width:520px){.wrap{padding:0 17px}.top{height:68px}.brand-mark{width:37px;height:37px}.brand-name{font-size:16px}.back{padding:9px 11px;font-size:12px}.hero{padding:36px 0 42px}h1{font-size:44px}.lead{font-size:16px}.screen{height:260px;padding-left:8px;padding-right:8px}.preview{padding:9px}.album{width:75px;height:75px}.speed{width:41px;height:41px}.caption{font-size:10px}.section{padding:34px 0}h2{font-size:25px}.faq{grid-template-columns:1fr}.footer{display:block}.footer span{display:block;margin-top:8px}}
+
+/* TAstore master brand: use the same mark on every product page. */
+.brand-mark.tastore-logo{width:42px;height:42px;box-sizing:border-box;flex:none;display:flex;align-items:center;justify-content:center;border-radius:50%;overflow:hidden;background:#fff;border:2px solid #2ab9ff;box-shadow:0 0 20px #159dff55;font-family:Arial,sans-serif;font-size:20px;font-style:italic;font-weight:900;letter-spacing:-1.5px;line-height:1;color:#159cff}
+.brand-mark.tastore-logo b{color:#ff7a2f;font-weight:950}
+.brand-mark.tastore-logo i{color:#159cff;font-style:italic}
+.brand-name{display:flex;align-items:baseline;white-space:nowrap;font-size:18px;line-height:1;font-weight:850;letter-spacing:-1.1px;font-style:italic;color:#fff}
+.brand-name b{color:#ff7a2f;font-weight:950}
+.brand-name i{color:#159cff;font-style:italic;font-weight:950}
+.brand-name em{color:#fff;font-style:italic;font-weight:850}
+@media(max-width:760px){.brand-mark.tastore-logo{width:37px;height:37px;font-size:18px}}
+</style>
+<link rel="stylesheet" href="assets/store-polish.css?v=20260928-1"><script src="assets/site.js?v=20260928-1" defer></script></head>
+<body>
+<div class="wrap">
+<header class="top">
+<a class="brand" href="./" aria-label="Về TAstore">
+<span class="brand-mark tastore-logo" aria-hidden="true"><b>T</b><i>A</i></span>
+<span class="brand-name"><b>T</b><i>A</i><em>store</em></span></a>
+<a class="back" href="./#products">← Tất cả sản phẩm</a>
+</header>
+
+<nav class="product-nav" aria-label="Các sản phẩm TA"><a href="./#products">Tất cả</a><a href="connectta.html">ConnectTA</a><a href="bubbleta.html">BubbleTA</a><a href="multita.html" aria-current="page">MultiTA</a><a href="cleanta.html">CleanTA</a><a href="hometa.html">HomeTA</a><a href="driveta.html">DriveTA</a><a href="./#support">Hỗ trợ</a></nav><main>
+<section class="hero">
+<div>
+<div class="crumb"><a href="./">TAstore</a>　/　Sản phẩm　/　MultiTA</div>
+<div class="badges"><span>CarPlay</span><span>Đa nhiệm</span><span class="status">Đang hoàn thiện</span></div><div class="compat-summary"><p><strong>Hỗ trợ</strong> Rootless/Roothide · iOS 15–16</p><p><strong>Đang phát triển</strong> iOS 17, 18–26.0</p></div>
+<h1>Hai ứng dụng.<br><span>Một màn hình.</span></h1>
+<p class="lead">MultiTA đưa hai ứng dụng lên cùng màn hình CarPlay để bạn có thể theo dõi bản đồ và sử dụng ứng dụng thứ hai trong cùng một phiên.</p>
+<div class="actions"><a class="button primary" href="#features">Khám phá tính năng ↓</a><a class="button secondary" href="./#products">Quay lại TAstore</a></div>
+<p class="note">Trang giới thiệu bản thử nghiệm. Phiên bản và khả năng tương thích sẽ được cập nhật theo từng bản phát hành.</p>
+</div>
+<div class="preview" aria-label="Hình minh họa MultiTA chạy hai ứng dụng song song">
+<div class="screen">
+<div class="statusbar"><b>16:20</b><span>CarPlay　5G　87%</span></div>
+<div class="panes">
+<div class="pane map-pane"><div class="map-road road-a"></div><div class="map-road road-b"></div><div class="map-road road-c"></div><div class="map-label">Dẫn đường</div><div class="speed">60</div><div class="route">↱ 800 m<br>Nguyễn Văn Linh</div></div>
+<div class="pane media-pane"><div class="album">♪</div><div class="track"><b>Đang phát</b><small>Ứng dụng giải trí</small></div><div class="controls">◀　●　▶</div></div>
+</div>
+<div class="divider"></div><div class="grip">⋮</div>
+</div>
+<div class="caption"><span>Bản đồ</span><span>Hai vùng hiển thị song song</span><span>Ứng dụng</span></div>
+</div>
+</section>
+
+<section class="section" id="features">
+<div class="kicker">Tổng quan</div><h2>Thiết kế cho màn hình CarPlay</h2>
+<p class="section-intro">Chia không gian hiển thị thành hai vùng để giữ thông tin cần thiết trong tầm mắt. Hình minh họa phía trên là bản xem trước giao diện.</p>
+<div class="feature-grid">
+<article class="feature"><div class="feature-icon">▥</div><h3>Hai ứng dụng cùng lúc</h3><p>Đặt ứng dụng dẫn đường ở một bên và ứng dụng thứ hai ở bên còn lại.</p></article>
+<article class="feature"><div class="feature-icon">↔</div><h3>Điều chỉnh bố cục</h3><p>Kéo thanh chia để thay đổi phần hiển thị dành cho từng ứng dụng.</p></article>
+<article class="feature"><div class="feature-icon">⌖</div><h3>Chạm theo từng vùng</h3><p>Chọn vùng ứng dụng cần thao tác ngay trên màn hình CarPlay.</p></article>
+</div>
+</section>
+
+<section class="section" id="how">
+<div class="kicker">Cách hoạt động</div><h2>Thao tác nhanh với MultiTA</h2>
+<p class="section-intro">Mở chia màn bằng thao tác kéo. Dùng tay nắm giữa hai màn để đổi ứng dụng, thoát chia màn hoặc về màn hình chính CarPlay.</p>
+<div class="steps">
+<article class="step"><h3>Kéo để chia màn hình</h3><p>Chạm và kéo từ khoảng trống ở khu vực Pin / Wi‑Fi trên CarPlay để mở ngay chế độ chia màn hình.</p></article>
+<article class="step"><h3>Chọn ứng dụng hai bên</h3><p>Sau khi màn hình được chia, chọn ứng dụng cho từng bên trái và phải.</p></article>
+<article class="step"><h3>Chạm hai lần để đổi ứng dụng</h3><p>Chạm hai lần vào tay nắm giữa hai màn để hiện hai lựa chọn đổi ứng dụng. Chọn bên trái hoặc phải, rồi chọn ứng dụng mới.</p></article>
+<article class="step"><h3>Thoát chia màn hình</h3><p>Kéo tay nắm sát mép trái hoặc mép phải để thoát chia màn hình.</p></article>
+<article class="step"><h3>Về màn hình chính CarPlay</h3><p>Nhấn giữ tay nắm, rồi chọn về màn hình chính CarPlay.</p></article>
+</div>
+</section>
+
+<section class="section" id="compatibility">
+<div class="kicker">Thông tin phát hành</div><h2>Tương thích và cài đặt</h2>
+<div class="info-grid">
+<div class="info"><h3>Yêu cầu</h3>
+<div class="info-row"><span>Màn hình</span><span>Apple CarPlay</span></div>
+<div class="info-row"><span>Thiết bị</span><span>iPhone đã jailbreak</span></div>
+<div class="info-row"><span>Hỗ trợ</span><span>Rootless/Roothide · iOS 15–16</span></div><div class="info-row"><span>Đang phát triển</span><span>iOS 17, 18–26.0</span></div>
+</div>
+<div class="info"><h3>Phiên bản và cài đặt</h3>
+<div class="info-row"><span>Trạng thái</span><span class="pending">Đang hoàn thiện</span></div>
+<div class="info-row"><span>Phiên bản mới nhất</span><span>Cập nhật sau khi chốt build</span></div>
+<div class="info-row"><span>Cài qua Sileo</span><span>Cấu hình gói sẽ bổ sung tại đây</span></div>
+</div>
+</div>
+<p class="note">Thông tin tương thích chỉ được đánh dấu hỗ trợ sau khi kiểm thử trên phiên bản iOS và môi trường jailbreak tương ứng.</p>
+</section>
+
+<section class="section" id="faq">
+<div class="kicker">Hỏi đáp</div><h2>Thông tin cần biết</h2>
+<div class="faq">
+<details><summary>MultiTA dùng để làm gì?</summary><p>MultiTA sắp xếp hai ứng dụng song song trên một màn hình CarPlay.</p></details>
+<details><summary>Có cần jailbreak không?</summary><p>Có. MultiTA là tweak dành cho iPhone đã jailbreak.</p></details>
+<details><summary>Ứng dụng nào cũng chia đôi được?</summary><p>Khả năng hiển thị phụ thuộc vào ứng dụng và phiên bản iOS. Danh sách đã kiểm thử sẽ được ghi theo từng bản phát hành.</p></details>
+<details><summary>Khi nào có thể cài?</summary><p>Hướng dẫn và nút cài Sileo sẽ được bật khi gói phát hành chính thức được đưa lên TAstore.</p></details>
+</div>
+</section>
+</main>
+
+<footer class="footer"><span>TAstore　•　DRIVE SMARTER, ENJOY MORE</span><span><a href="./#products" style="color:#9aacc0;text-decoration:none">← Quay về cửa hàng</a></span></footer>
+</div>
+</body>
+</html>

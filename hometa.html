@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#06101d">
+<meta name="description" content="HomeTA là hướng phát triển giao diện màn hình chính CarPlay của TAstore, hiện đang trong giai đoạn thử nghiệm.">
+<title>HomeTA — Giao diện CarPlay phong cách mới | TAstore</title>
+<style>
+:root{color-scheme:dark;--line:#243a54;--text:#f4f7fb;--muted:#a9b7c8;--blue:#35b9ff;--purple:#a66bff}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 78% 8%,#183a7566,transparent 30%),linear-gradient(145deg,#06101d,#020812 75%);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:inherit}
+.wrap{max-width:1120px;margin:auto;padding:0 26px}
+header{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff12}
+.brand{text-decoration:none;font-size:18px;font-weight:850;letter-spacing:-.04em}.brand span{color:var(--blue)}
+.back{font-size:13px;color:#c5d1de;text-decoration:none;padding:10px 15px;border:1px solid #ffffff20;border-radius:20px}
+.hero{display:grid;grid-template-columns:1fr 1.05fr;gap:45px;align-items:center;padding:58px 0}
+.crumb{font-size:12px;color:#8da0b8;letter-spacing:.08em;text-transform:uppercase}.crumb a{text-decoration:none}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}
+.badges span{border:1px solid #ffffff20;background:#ffffff08;border-radius:99px;padding:8px 12px;color:#d7e1ec;font-size:12px}
+.badges .status{border-color:#e4ad4c55;background:#d99b2418;color:#ffd889}
+h1{font-size:clamp(42px,5vw,64px);line-height:1;letter-spacing:-.055em;margin:18px 0}
+h1 span{background:linear-gradient(90deg,#35b9ff,#b28aff);-webkit-background-clip:text;color:transparent}
+.lead{font-size:17px;line-height:1.65;color:#c4d0de;max-width:520px}
+.actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:22px}
+.button{display:inline-flex;justify-content:center;align-items:center;padding:13px 17px;border-radius:13px;text-decoration:none;font-size:14px;font-weight:750}
+.primary{background:linear-gradient(100deg,#187cf4,#8b55ef);box-shadow:0 9px 25px #5145c544}
+.secondary{border:1px solid #ffffff26;background:#ffffff08}
+.note{font-size:12px;color:#aebbd0;line-height:1.6;margin-top:18px}
+.preview{padding:13px;border:1px solid #5177c4;border-radius:27px;background:linear-gradient(145deg,#111d36,#091321);box-shadow:0 28px 80px #0008,0 0 45px #627fff18}
+.screen{min-height:320px;padding:15px;border-radius:18px;background:radial-gradient(circle at 72% 12%,#397cff88,transparent 36%),linear-gradient(145deg,#0c1a36,#18396c 58%,#34295e);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.statusbar{display:flex;justify-content:space-between;gap:10px;font-size:10px;color:#f4f7ff}
+.homegrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:370px;margin:12px auto}
+.app{aspect-ratio:1;border:1px solid #ffffff35;border-radius:17px;background:#ffffff20;backdrop-filter:blur(10px);display:grid;place-items:center;font-size:25px;box-shadow:0 8px 18px #0003}
+.app:nth-child(2){background:#168cffaa}.app:nth-child(3){background:#ff2638bb}.app:nth-child(4){background:#24b88caa}.app:nth-child(5){background:#ffb72aaa}.app:nth-child(6){background:#a650d8aa}.app:nth-child(7){background:#31a8cfaa}.app:nth-child(8){background:#46597aaa}
+.dock{display:flex;justify-content:center;gap:12px;width:max-content;max-width:100%;margin:10px auto 0;padding:9px 13px;border:1px solid #ffffff45;border-radius:20px;background:#e8f0ff35;backdrop-filter:blur(16px);box-shadow:0 8px 26px #0004}
+.dock .app{width:39px;aspect-ratio:1;border-radius:13px;font-size:19px}
+.caption{display:flex;justify-content:space-between;gap:10px;margin-top:12px;font-size:11px;color:#a7b6ca}
+.section{padding:38px 0;border-top:1px solid #ffffff12}
+.kicker{font-size:11px;color:#91a6c1;letter-spacing:.14em;text-transform:uppercase}
+h2{font-size:29px;letter-spacing:-.035em;margin:9px 0}
+.intro{color:var(--muted);line-height:1.65;max-width:700px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+.tile{padding:20px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,#102139aa,#091321)}
+.tile i{font-style:normal;color:#84cfff;font-size:22px}.tile h3{font-size:16px;margin:10px 0 7px}.tile p{font-size:13px;color:#adbdcf;line-height:1.6;margin:0}
+.info{max-width:760px;border:1px solid var(--line);border-radius:17px;background:#0a1726;padding:20px}
+.row{display:flex;justify-content:space-between;gap:18px;padding:13px 0;border-top:1px solid #ffffff12;font-size:13px}.row span:first-child{color:#98a9bd}.pending{color:#ffd889;text-align:right}
+footer{padding:28px 0 38px;border-top:1px solid #ffffff12;color:#74869c;font-size:12px;display:flex;justify-content:space-between}
+@media(max-width:760px){.hero{grid-template-columns:1fr;gap:28px;padding:40px 0}.grid{grid-template-columns:1fr}.screen{min-height:280px}}
+@media(max-width:520px){.wrap{padding:0 17px}header{height:68px}.brand{font-size:16px}.back{padding:9px 11px;font-size:12px}h1{font-size:43px}.lead{font-size:15px}.screen{min-height:260px;padding:12px}.homegrid{gap:8px;max-width:290px}.app{border-radius:13px;font-size:21px}.dock{gap:8px;padding:7px 9px}.dock .app{width:34px;border-radius:11px;font-size:17px}.section{padding:30px 0}h2{font-size:25px}.caption{font-size:10px}footer{display:block}footer span{display:block;margin-top:8px}}
+
+/* TAstore master brand: use the same mark on every product page. */
+.brand-mark.tastore-logo{width:42px;height:42px;box-sizing:border-box;flex:none;display:flex;align-items:center;justify-content:center;border-radius:50%;overflow:hidden;background:#fff;border:2px solid #2ab9ff;box-shadow:0 0 20px #159dff55;font-family:Arial,sans-serif;font-size:20px;font-style:italic;font-weight:900;letter-spacing:-1.5px;line-height:1;color:#159cff}
+.brand-mark.tastore-logo b{color:#ff7a2f;font-weight:950}
+.brand-mark.tastore-logo i{color:#159cff;font-style:italic}
+.brand-name{display:flex;align-items:baseline;white-space:nowrap;font-size:18px;line-height:1;font-weight:850;letter-spacing:-1.1px;font-style:italic;color:#fff}
+.brand-name b{color:#ff7a2f;font-weight:950}
+.brand-name i{color:#159cff;font-style:italic;font-weight:950}
+.brand-name em{color:#fff;font-style:italic;font-weight:850}
+@media(max-width:760px){.brand-mark.tastore-logo{width:37px;height:37px;font-size:18px}}
+</style>
+<link rel="stylesheet" href="assets/store-polish.css?v=20260928-1"><script src="assets/site.js?v=20260928-1" defer></script></head>
+<body>
+<div class="wrap">
+<header><a class="brand" href="./" aria-label="Về TAstore"><span class="brand-mark tastore-logo" aria-hidden="true"><b>T</b><i>A</i></span><span class="brand-name"><b>T</b><i>A</i><em>store</em></span></a><a class="back" href="./#products">← Tất cả sản phẩm</a></header>
+<nav class="product-nav" aria-label="Các sản phẩm TA"><a href="./#products">Tất cả</a><a href="connectta.html">ConnectTA</a><a href="bubbleta.html">BubbleTA</a><a href="multita.html">MultiTA</a><a href="cleanta.html">CleanTA</a><a href="hometa.html" aria-current="page">HomeTA</a><a href="driveta.html">DriveTA</a><a href="./#support">Hỗ trợ</a></nav><main>
+<section class="hero">
+<div>
+<div class="crumb"><a href="./">TAstore</a>　/　Sản phẩm　/　HomeTA</div>
+<div class="badges"><span>CarPlay</span><span>Giao diện</span><span class="status">Đang phát triển</span></div><div class="compat-summary"><p><strong>Hỗ trợ</strong> Rootless/Roothide · iOS 15–16</p><p><strong>Đang phát triển</strong> iOS 17, 18–26.0</p></div>
+<h1>Màn hình chính<br><span>mang chất HomeTA.</span></h1>
+<p class="lead">HomeTA là hướng phát triển giao diện màn hình chính CarPlay của TAstore, lấy cảm hứng từ phong cách hiển thị thế hệ mới với nền, biểu tượng và Dock đồng bộ.</p>
+<div class="actions"><a class="button primary" href="#goals">Xem mục tiêu giao diện ↓</a><a class="button secondary" href="./#products">Quay lại TAstore</a></div>
+<p class="note">Đây là trang giới thiệu quá trình phát triển. HomeTA chưa có bản phát hành để cài đặt; hình minh họa chỉ thể hiện ý tưởng giao diện.</p>
+</div>
+<div class="preview" aria-label="Minh họa ý tưởng giao diện HomeTA trên CarPlay">
+<div class="screen">
+<div class="statusbar"><b>16:20</b><span>5G　Wi‑Fi　87%</span></div>
+<div class="homegrid" aria-hidden="true"><i class="app">⌖</i><i class="app">♫</i><i class="app">▶</i><i class="app">☎</i><i class="app">▦</i><i class="app">Z</i><i class="app">♪</i><i class="app">TA</i></div>
+<div class="dock" aria-hidden="true"><i class="app">⌖</i><i class="app">♫</i><i class="app">☎</i><i class="app">▦</i></div>
+</div>
+<div class="caption"><span>Home</span><span>Biểu tượng</span><span>Dock bo tròn</span></div>
+</div>
+</section>
+<section class="section" id="goals">
+<div class="kicker">Định hướng thiết kế</div><h2>Những phần đang được hoàn thiện</h2>
+<p class="intro">Mục tiêu là tạo một màn hình CarPlay hiện đại, dễ nhìn và nhất quán. Các mục dưới đây mô tả định hướng thiết kế, chưa phải cam kết về tính năng đã phát hành.</p>
+<div class="grid">
+<article class="tile"><i>◌</i><h3>Nền đứng yên</h3><p>Hoàn thiện cách giữ nền giao diện ổn định khi mở hoặc đóng ứng dụng.</p></article>
+<article class="tile"><i>▤</i><h3>Dock bo tròn</h3><p>Điều chỉnh hình dáng và màu Dock để hòa hợp với nền của màn hình chính.</p></article>
+<article class="tile"><i>▦</i><h3>Thao tác đáng tin cậy</h3><p>Kiểm tra cảm ứng trên Dock và các vùng điều khiển sau khi thay đổi giao diện.</p></article>
+</div>
+</section>
+<section class="section">
+<div class="kicker">Tình trạng</div><h2>Thông tin phát hành</h2>
+<div class="info">
+<div class="row"><span>Trạng thái</span><span class="pending">Đang phát triển và kiểm thử</span></div>
+<div class="row"><span>Thiết bị / iOS hỗ trợ</span><span class="pending">Chưa chốt</span></div>
+<div class="row"><span>Gói cài đặt Sileo</span><span class="pending">Chưa phát hành</span></div>
+<div class="row"><span>Hướng dẫn cài đặt</span><span class="pending">Sẽ bổ sung khi có bản ổn định</span></div>
+</div>
+</section>
+</main>
+<footer><span>TAstore　•　DRIVE SMARTER, ENJOY MORE</span><span><a href="./#products" style="color:#9aacc0;text-decoration:none">← Quay về cửa hàng</a></span></footer>
+</div>
+</body>
+</html>

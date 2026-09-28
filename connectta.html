@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#06101d">
+<title>ConnectTA — Mở rộng ứng dụng trên CarPlay | TAstore</title>
+<style>
+:root{color-scheme:dark;--bg:#06101d;--panel:#0b1929;--line:#243a54;--text:#f4f7fb;--muted:#a9b7c8;--cyan:#2bd4b4;--orange:#ff8b3d}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 78% 8%,#164d5966,transparent 29%),linear-gradient(145deg,#06101d,#020812 75%);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:inherit}
+.wrap{max-width:1180px;margin:auto;padding:0 28px}
+.top{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff12}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand-mark{width:42px;height:42px;border-radius:13px;overflow:hidden;box-shadow:0 0 24px #2bd4b433}
+.brand-mark svg{width:100%;height:100%;display:block}
+.brand-name{font-weight:800;font-size:18px;letter-spacing:-.5px}
+.brand-name span{color:var(--cyan)}
+.back{font-size:13px;color:#c5d1de;text-decoration:none;padding:10px 15px;border:1px solid #ffffff20;border-radius:20px}
+.back:hover{border-color:#2bd4b4;color:white}
+.hero{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center;padding:64px 0 58px}
+.crumb{font-size:12px;color:#8da0b8;letter-spacing:.08em;text-transform:uppercase}
+.crumb a{text-decoration:none;color:#aebcd0}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 25px}
+.badges span{border:1px solid #ffffff20;background:#ffffff08;border-radius:99px;padding:8px 12px;color:#d7e1ec;font-size:12px}
+.badges .status{border-color:#e4ad4c55;background:#d99b2418;color:#ffd889}
+h1{font-size:clamp(40px,5.1vw,64px);line-height:1;letter-spacing:-.055em;margin:18px 0}
+h1 span{color:var(--cyan)}
+.lead{font-size:18px;line-height:1.65;color:#c4d0de;max-width:520px;margin:0 0 22px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.button{display:inline-flex;justify-content:center;align-items:center;padding:13px 18px;border-radius:13px;text-decoration:none;font-size:14px;font-weight:750}
+.primary{background:linear-gradient(100deg,#10aa9b,#248fe7);box-shadow:0 9px 25px #138f9866}
+.secondary{border:1px solid #ffffff26;background:#ffffff08}
+.note{font-size:12px;color:#8193a8;line-height:1.55;margin-top:18px}
+.preview{position:relative;padding:14px;border:1px solid #377a8e;border-radius:27px;background:linear-gradient(145deg,#101d35,#091321);box-shadow:0 28px 80px #0008,0 0 45px #26ccb018}
+.screen{min-height:310px;border-radius:18px;background:#071321;overflow:hidden;position:relative;padding:30px 14px 14px}
+.statusbar{position:absolute;left:17px;right:17px;top:10px;display:flex;justify-content:space-between;color:#d8e4f2;font-size:10px}
+.screen-body{display:grid;grid-template-columns:1fr 170px;gap:12px;height:100%}
+.app-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;align-content:center}
+.app{min-height:92px;border:1px solid #ffffff15;border-radius:15px;background:linear-gradient(145deg,#11253c,#101a2d);display:flex;align-items:center;gap:10px;padding:12px}
+.app-icon{width:43px;height:43px;border-radius:12px;display:grid;place-items:center;color:white;font-size:20px;font-weight:850;flex:none}
+.yt{background:#f02f3e}.zalo{background:#168cff}.tiktok{background:linear-gradient(135deg,#171923 45%,#20d9df 46%,#ff4774)}.music{background:linear-gradient(135deg,#ff5578,#7748e8)}
+.app b{font-size:12px;display:block}.app small{font-size:10px;color:#91a4ba}
+.settings{border:1px solid #ffffff17;border-radius:15px;background:#0d1b2d;padding:13px 11px;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.settings-title{font-size:11px;font-weight:750;color:#dce7f3;margin-bottom:2px}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:10px;color:#bdc9d7}
+.toggle{width:29px;height:16px;border-radius:12px;background:#20c7ab;position:relative;flex:none}
+.toggle:after{content:"";position:absolute;width:12px;height:12px;right:2px;top:2px;border-radius:50%;background:white}
+.toggle.off{background:#35475b}.toggle.off:after{right:auto;left:2px}
+.caption{display:flex;justify-content:space-between;gap:12px;margin-top:13px;font-size:11px;color:#a7b6ca}
+.section{padding:46px 0;border-top:1px solid #ffffff12}
+.kicker{font-size:11px;color:#91a6c1;letter-spacing:.14em;text-transform:uppercase}
+h2{font-size:30px;letter-spacing:-.035em;margin:9px 0 10px}
+.section-intro{color:var(--muted);line-height:1.6;max-width:650px;margin:0 0 23px}
+.feature-grid,.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.feature,.step{padding:20px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,#102139aa,#091321)}
+.feature-icon{width:38px;height:38px;border-radius:12px;background:#20c7ab22;border:1px solid #20c7ab55;display:grid;place-items:center;color:#7debd9;font-weight:800}
+.feature h3,.step h3{font-size:16px;margin:14px 0 7px}
+.feature p,.step p{font-size:13px;color:#adbdcf;line-height:1.6;margin:0}
+.steps{counter-reset:step}.step{counter-increment:step}.step:before{content:"0" counter(step);font-size:12px;color:#64e1d0;letter-spacing:.1em}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.info{padding:22px;border:1px solid var(--line);border-radius:17px;background:#0a1726}
+.info h3{font-size:16px;margin:0 0 14px}
+.info-row{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-top:1px solid #ffffff12;font-size:13px}
+.info-row span:first-child{color:#98a9bd}.info-row span:last-child{text-align:right;color:#e1e9f2}.pending{color:#ffd889!important}
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.faq details{border:1px solid #ffffff18;background:#ffffff06;border-radius:14px;padding:16px}
+.faq summary{cursor:pointer;font-weight:700;font-size:14px}
+.faq p{color:#acbbcc;font-size:13px;line-height:1.6;margin-bottom:0}
+.safety{padding:15px 17px;border-left:3px solid #eab759;border-radius:0 12px 12px 0;background:#d99b2410;color:#d6c39e;font-size:12px;line-height:1.55;margin-top:22px}
+.footer{padding:30px 0 38px;border-top:1px solid #ffffff12;color:#74869c;font-size:12px;display:flex;justify-content:space-between}
+@media(max-width:800px){.hero{grid-template-columns:1fr;gap:32px;padding:44px 0}.preview{max-width:620px}.feature-grid,.steps{grid-template-columns:1fr}.info-grid{grid-template-columns:1fr}}
+@media(max-width:520px){.wrap{padding:0 17px}.top{height:68px}.brand-mark{width:37px;height:37px}.brand-name{font-size:16px}.back{padding:9px 11px;font-size:12px}.hero{padding:36px 0 42px}h1{font-size:43px}.lead{font-size:16px}.screen{min-height:300px;padding:30px 8px 8px}.preview{padding:9px}.screen-body{grid-template-columns:1fr 124px;gap:7px}.app{min-height:76px;padding:8px;gap:7px}.app-icon{width:34px;height:34px;border-radius:10px;font-size:16px}.app b{font-size:10px}.app small{font-size:9px}.settings{padding:10px 8px}.toggle-row{font-size:9px}.caption{font-size:10px}.section{padding:34px 0}h2{font-size:25px}.faq{grid-template-columns:1fr}.footer{display:block}.footer span{display:block;margin-top:8px}}
+
+/* TAstore master brand: use the same mark on every product page. */
+.brand-mark.tastore-logo{width:42px;height:42px;box-sizing:border-box;flex:none;display:flex;align-items:center;justify-content:center;border-radius:50%;overflow:hidden;background:#fff;border:2px solid #2ab9ff;box-shadow:0 0 20px #159dff55;font-family:Arial,sans-serif;font-size:20px;font-style:italic;font-weight:900;letter-spacing:-1.5px;line-height:1;color:#159cff}
+.brand-mark.tastore-logo b{color:#ff7a2f;font-weight:950}
+.brand-mark.tastore-logo i{color:#159cff;font-style:italic}
+.brand-name{display:flex;align-items:baseline;white-space:nowrap;font-size:18px;line-height:1;font-weight:850;letter-spacing:-1.1px;font-style:italic;color:#fff}
+.brand-name b{color:#ff7a2f;font-weight:950}
+.brand-name i{color:#159cff;font-style:italic;font-weight:950}
+.brand-name em{color:#fff;font-style:italic;font-weight:850}
+@media(max-width:760px){.brand-mark.tastore-logo{width:37px;height:37px;font-size:18px}}
+</style>
+<link rel="stylesheet" href="assets/store-polish.css?v=20260928-1"><script src="assets/site.js?v=20260928-1" defer></script></head>
+<body>
+<div class="wrap">
+<header class="top">
+<a class="brand" href="./" aria-label="Về TAstore">
+<span class="brand-mark tastore-logo" aria-hidden="true"><b>T</b><i>A</i></span>
+<span class="brand-name"><b>T</b><i>A</i><em>store</em></span></a>
+<a class="back" href="./#products">← Tất cả sản phẩm</a>
+</header>
+
+<nav class="product-nav" aria-label="Các sản phẩm TA"><a href="./#products">Tất cả</a><a href="connectta.html" aria-current="page">ConnectTA</a><a href="bubbleta.html">BubbleTA</a><a href="multita.html">MultiTA</a><a href="cleanta.html">CleanTA</a><a href="hometa.html">HomeTA</a><a href="driveta.html">DriveTA</a><a href="./#support">Hỗ trợ</a></nav><main>
+<section class="hero">
+<div>
+<div class="crumb"><a href="./">TAstore</a>　/　Sản phẩm　/　ConnectTA</div>
+<div class="badges"><span>CarPlay</span><span>Ứng dụng</span><span class="status">Đang hoàn thiện</span></div><div class="compat-summary"><p><strong>Hỗ trợ</strong> Rootless/Roothide · iOS 15–16</p><p><strong>Đang phát triển</strong> iOS 17, 18–26.0</p></div>
+<h1>Đưa ứng dụng yêu thích<br><span>lên CarPlay.</span></h1>
+<p class="lead">ConnectTA giúp đưa các ứng dụng tương thích như YouTube, Zalo và TikTok lên giao diện CarPlay, để bạn truy cập chúng từ màn hình xe.</p>
+<div class="actions"><a class="button primary" href="#features">Khám phá tính năng ↓</a><a class="button secondary" href="./#products">Quay lại TAstore</a></div>
+<div class="safety">Chỉ thao tác với ứng dụng giải trí khi xe đã dừng ở nơi an toàn.</div>
+<p class="note">Trang giới thiệu bản thử nghiệm. Danh sách ứng dụng và khả năng tương thích sẽ được cập nhật theo từng bản phát hành.</p>
+</div>
+<div class="preview" aria-label="Hình minh họa các ứng dụng được chọn cho CarPlay">
+<div class="screen">
+<div class="statusbar"><b>16:20</b><span>ConnectTA　CarPlay</span><span>5G　87%</span></div>
+<div class="screen-body">
+<div class="app-grid">
+<div class="app"><span class="app-icon yt">▶</span><span><b>YouTube</b><small>Giải trí</small></span></div>
+<div class="app"><span class="app-icon zalo">Z</span><span><b>Zalo</b><small>Liên lạc</small></span></div>
+<div class="app"><span class="app-icon tiktok">♪</span><span><b>TikTok</b><small>Video</small></span></div>
+<div class="app"><span class="app-icon music">♫</span><span><b>Music</b><small>Âm thanh</small></span></div>
+</div>
+<div class="settings"><div class="settings-title">Ứng dụng trên xe</div>
+<div class="toggle-row"><span>YouTube</span><i class="toggle"></i></div>
+<div class="toggle-row"><span>Zalo</span><i class="toggle"></i></div>
+<div class="toggle-row"><span>TikTok</span><i class="toggle off"></i></div>
+<div class="toggle-row"><span>Music</span><i class="toggle"></i></div>
+</div>
+</div>
+</div>
+<div class="caption"><span>Chọn ứng dụng</span><span>Bật/tắt theo nhu cầu</span><span>Mở trên CarPlay</span></div>
+</div>
+</section>
+
+<section class="section" id="features">
+<div class="kicker">Tổng quan</div><h2>Ứng dụng bạn chọn, trên màn hình xe</h2>
+<p class="section-intro">ConnectTA tập trung vào việc quản lý ứng dụng hiển thị trên CarPlay bằng lựa chọn bật/tắt, với giao diện dễ theo dõi.</p>
+<div class="feature-grid">
+<article class="feature"><div class="feature-icon">＋</div><h3>Mở rộng ứng dụng</h3><p>Truy cập các ứng dụng tương thích không có sẵn trong giao diện CarPlay tiêu chuẩn.</p></article>
+<article class="feature"><div class="feature-icon">◉</div><h3>Bật hoặc tắt từng ứng dụng</h3><p>Chọn ứng dụng muốn hiện trên xe từ cấu hình của ConnectTA.</p></article>
+<article class="feature"><div class="feature-icon">▣</div><h3>Dùng giao diện CarPlay</h3><p>Mở ứng dụng được bật trực tiếp từ màn hình xe khi xe đang dừng an toàn.</p></article>
+</div>
+</section>
+
+<section class="section" id="how">
+<div class="kicker">Cách hoạt động</div><h2>Thiết lập nhanh theo nhu cầu</h2>
+<p class="section-intro">Chọn ứng dụng muốn dùng, sau đó truy cập từ giao diện CarPlay</p>
+<div class="steps">
+<article class="step"><h3>Mở ConnectTA</h3><p>Truy cập danh sách ứng dụng trong phần cấu hình ConnectTA</p></article>
+<article class="step"><h3>Bật ứng dụng cần dùng</h3><p>Chuyển trạng thái bật/tắt cho từng ứng dụng tương thích</p></article>
+<article class="step"><h3>Mở trên CarPlay</h3><p>Chọn ứng dụng đã bật trên màn hình xe khi xe dừng an toàn</p></article>
+</div>
+</section>
+
+<section class="section" id="compatibility">
+<div class="kicker">Thông tin phát hành</div><h2>Tương thích và cài đặt</h2>
+<div class="info-grid">
+<div class="info"><h3>Yêu cầu</h3>
+<div class="info-row"><span>Màn hình</span><span>Apple CarPlay</span></div>
+<div class="info-row"><span>Thiết bị</span><span>iPhone đã jailbreak</span></div>
+<div class="info-row"><span>Hỗ trợ</span><span>Rootless/Roothide · iOS 15–16</span></div><div class="info-row"><span>Đang phát triển</span><span>iOS 17, 18–26.0</span></div>
+</div>
+<div class="info"><h3>Phiên bản và cài đặt</h3>
+<div class="info-row"><span>Trạng thái</span><span class="pending">Đang hoàn thiện</span></div>
+<div class="info-row"><span>Phiên bản mới nhất</span><span>Cập nhật sau khi chốt build</span></div>
+<div class="info-row"><span>Cài qua Sileo</span><span>Cấu hình gói sẽ bổ sung tại đây</span></div>
+</div>
+</div>
+<p class="note">Danh sách app và phiên bản iOS hỗ trợ sẽ được công bố theo kết quả kiểm thử.</p>
+</section>
+
+<section class="section" id="faq">
+<div class="kicker">Hỏi đáp</div><h2>Thông tin cần biết</h2>
+<div class="faq">
+<details><summary>ConnectTA dùng để làm gì?</summary><p>ConnectTA giúp hiển thị và mở các ứng dụng tương thích từ giao diện CarPlay.</p></details>
+<details><summary>Có cần jailbreak không?</summary><p>Có. ConnectTA là tweak dành cho iPhone đã jailbreak.</p></details>
+<details><summary>Ứng dụng nào được hỗ trợ?</summary><p>Danh sách có thể thay đổi theo phiên bản. Trang sẽ ghi rõ các ứng dụng đã kiểm thử khi phát hành.</p></details>
+<details><summary>Khi nào có thể cài?</summary><p>Hướng dẫn và nút cài Sileo sẽ được bật khi gói phát hành chính thức được đưa lên TAstore.</p></details>
+</div>
+</section>
+</main>
+
+<footer class="footer"><span>TAstore　•　DRIVE SMARTER, ENJOY MORE</span><span><a href="./#products" style="color:#9aacc0;text-decoration:none">← Quay về cửa hàng</a></span></footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#06101d">
+<title>DriveTA — Góc nhìn thông minh từ camera hành trình | TAstore</title>
+<style>
+:root{color-scheme:dark;--bg:#06101d;--panel:#0b1929;--line:#243a54;--text:#f4f7fb;--muted:#a9b7c8;--blue:#39baff;--violet:#9b72ff}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 78% 8%,#25377866,transparent 28%),linear-gradient(145deg,#06101d,#020812 75%);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:inherit}
+.wrap{max-width:1180px;margin:auto;padding:0 28px}
+.top{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff12}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand-mark{width:42px;height:42px;border-radius:13px;overflow:hidden;box-shadow:0 0 24px #7c8cff33}
+.brand-mark svg{width:100%;height:100%;display:block}
+.brand-name{font-weight:800;font-size:18px;letter-spacing:-.5px}
+.brand-name span{color:#54baff}
+.back{font-size:13px;color:#c5d1de;text-decoration:none;padding:10px 15px;border:1px solid #ffffff20;border-radius:20px}
+.back:hover{border-color:#8a70ff;color:white}
+.hero{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center;padding:64px 0 58px}
+.crumb{font-size:12px;color:#8da0b8;letter-spacing:.08em;text-transform:uppercase}
+.crumb a{text-decoration:none;color:#aebcd0}
+h1{font-size:clamp(42px,5.5vw,68px);line-height:.98;letter-spacing:-.055em;margin:18px 0}
+h1 span{color:#a98aff}
+.lead{font-size:18px;line-height:1.65;color:#c4d0de;max-width:520px;margin:0 0 22px}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 27px}
+.badges span{border:1px solid #ffffff20;background:#ffffff08;border-radius:99px;padding:8px 12px;color:#d7e1ec;font-size:12px}
+.badges .status{border-color:#e4ad4c55;background:#d99b2418;color:#ffd889}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.button{display:inline-flex;justify-content:center;align-items:center;padding:13px 18px;border-radius:13px;text-decoration:none;font-size:14px;font-weight:750}
+.primary{background:linear-gradient(100deg,#7252e8,#358ff4);box-shadow:0 9px 25px #5035a644}
+.secondary{border:1px solid #ffffff26;background:#ffffff08}
+.note{font-size:12px;color:#8193a8;line-height:1.55;margin-top:18px}
+.preview{position:relative;padding:14px;border:1px solid #526ca0;border-radius:27px;background:linear-gradient(145deg,#101d35,#091321);box-shadow:0 28px 80px #0008,0 0 45px #5975ff18}
+.screen{height:310px;border-radius:18px;background:#071321;overflow:hidden;position:relative;padding:30px 12px 12px}
+.statusbar{position:absolute;left:16px;right:16px;top:10px;display:flex;justify-content:space-between;color:#d8e4f2;font-size:10px}
+.panes{height:100%;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pane{position:relative;border:1px solid #ffffff1b;border-radius:14px;overflow:hidden}
+.map-pane{background:linear-gradient(135deg,#164257,#112738)}
+.map-road{position:absolute;height:8px;border-radius:9px;background:#95bdd344;transform-origin:left}
+.road-a{width:135%;top:31%;left:-12%;transform:rotate(27deg)}
+.road-b{width:125%;top:72%;left:-5%;transform:rotate(-25deg)}
+.road-c{width:80%;top:10%;left:52%;transform:rotate(85deg)}
+.map-label{position:absolute;top:14px;left:13px;padding:7px 9px;border-radius:9px;background:#061522aa;font-size:10px}
+.speed{position:absolute;right:13px;top:43%;width:48px;height:48px;border:5px solid #fa514d;border-radius:50%;display:grid;place-items:center;background:#fff;color:#111;font-weight:850;font-size:15px}
+.route{position:absolute;left:13px;bottom:14px;font-size:11px;color:#e6f2ff}
+.media-pane{background:linear-gradient(145deg,#241b44,#121a34);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:11px}
+.album{width:100px;height:100px;border-radius:18px;background:radial-gradient(circle at 28% 20%,#ffcf72,#f45e91 43%,#5d58d7 78%);display:grid;place-items:center;font-size:26px;box-shadow:0 12px 28px #0006}
+.track{text-align:center}.track b{display:block;font-size:13px}.track small{font-size:10px;color:#b9c2d4}
+.controls{display:flex;gap:17px;align-items:center;color:#ebf1fb;font-size:14px}
+.divider{position:absolute;left:50%;top:42px;bottom:24px;width:3px;border-radius:5px;background:#b29aff;box-shadow:0 0 15px #a085ff99}
+.grip{position:absolute;top:47%;left:50%;transform:translate(-50%,-50%);width:20px;height:48px;border-radius:12px;background:#a78bfa;display:grid;place-items:center;color:#25134f;font-size:13px;font-weight:900}
+.caption{display:flex;justify-content:space-between;gap:12px;margin-top:13px;font-size:11px;color:#a7b6ca}
+.section{padding:46px 0;border-top:1px solid #ffffff12}
+.kicker{font-size:11px;color:#91a6c1;letter-spacing:.14em;text-transform:uppercase}
+h2{font-size:30px;letter-spacing:-.035em;margin:9px 0 10px}
+.section-intro{color:var(--muted);line-height:1.6;max-width:620px;margin:0 0 23px}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.feature{padding:20px;border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,#102139aa,#091321)}
+.feature-icon{width:38px;height:38px;border-radius:12px;background:#8d6bff22;border:1px solid #9d7dff44;display:grid;place-items:center;color:#c1aaff;font-weight:800}
+.feature h3{font-size:16px;margin:14px 0 7px}
+.feature p{font-size:13px;color:#adbdcf;line-height:1.6;margin:0}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;counter-reset:step}
+.step{padding:20px;border-radius:16px;background:#ffffff07;border:1px solid #ffffff16;counter-increment:step}
+.step:before{content:"0" counter(step);font-size:12px;color:#b49aff;letter-spacing:.1em}.step-symbol{display:inline-flex;width:19px;height:19px;vertical-align:-5px;margin:0 3px;border-radius:5px;overflow:hidden}.step-symbol svg{display:block;width:100%;height:100%}
+.step h3{font-size:15px;margin:12px 0 6px}
+.step p{font-size:13px;color:#afbdcf;line-height:1.55;margin:0}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.info{padding:22px;border:1px solid var(--line);border-radius:17px;background:#0a1726}
+.info h3{font-size:16px;margin:0 0 14px}
+.info-row{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-top:1px solid #ffffff12;font-size:13px}
+.info-row span:first-child{color:#98a9bd}.info-row span:last-child{text-align:right;color:#e1e9f2}
+.pending{color:#ffd889!important}
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.faq details{border:1px solid #ffffff18;background:#ffffff06;border-radius:14px;padding:16px}
+.faq summary{cursor:pointer;font-weight:700;font-size:14px}
+.faq p{color:#acbbcc;font-size:13px;line-height:1.6;margin-bottom:0}
+.footer{padding:30px 0 38px;border-top:1px solid #ffffff12;color:#74869c;font-size:12px;display:flex;justify-content:space-between}
+@media(max-width:800px){.hero{grid-template-columns:1fr;gap:32px;padding:44px 0}.preview{max-width:620px}.feature-grid,.steps{grid-template-columns:1fr}.info-grid{grid-template-columns:1fr}}
+@media(max-width:520px){.wrap{padding:0 17px}.top{height:68px}.brand-mark{width:37px;height:37px}.brand-name{font-size:16px}.back{padding:9px 11px;font-size:12px}.hero{padding:36px 0 42px}h1{font-size:44px}.lead{font-size:16px}.screen{height:260px;padding-left:8px;padding-right:8px}.preview{padding:9px}.album{width:75px;height:75px}.speed{width:41px;height:41px}.caption{font-size:10px}.section{padding:34px 0}h2{font-size:25px}.faq{grid-template-columns:1fr}.footer{display:block}.footer span{display:block;margin-top:8px}}
+
+/* TAstore master brand: use the same mark on every product page. */
+.brand-mark.tastore-logo{width:42px;height:42px;box-sizing:border-box;flex:none;display:flex;align-items:center;justify-content:center;border-radius:50%;overflow:hidden;background:#fff;border:2px solid #2ab9ff;box-shadow:0 0 20px #159dff55;font-family:Arial,sans-serif;font-size:20px;font-style:italic;font-weight:900;letter-spacing:-1.5px;line-height:1;color:#159cff}
+.brand-mark.tastore-logo b{color:#ff7a2f;font-weight:950}
+.brand-mark.tastore-logo i{color:#159cff;font-style:italic}
+.brand-name{display:flex;align-items:baseline;white-space:nowrap;font-size:18px;line-height:1;font-weight:850;letter-spacing:-1.1px;font-style:italic;color:#fff}
+.brand-name b{color:#ff7a2f;font-weight:950}
+.brand-name i{color:#159cff;font-style:italic;font-weight:950}
+.brand-name em{color:#fff;font-style:italic;font-weight:850}
+@media(max-width:760px){.brand-mark.tastore-logo{width:37px;height:37px;font-size:18px}}
+</style>
+<link rel="stylesheet" href="assets/store-polish.css?v=20260928-1"><script src="assets/site.js?v=20260928-1" defer></script><style>body{background:radial-gradient(circle at 85% 8%,#12554d66,transparent 36%),#06101d}h1 span{color:#61dfc9}.drive-label{display:flex;align-items:center;gap:13px;margin:24px 0 18px;font-size:24px;font-weight:800}.drive-label img{width:58px;height:58px}.drive-visual{padding:10px;border:1px solid #3ba48f66;border-radius:25px;background:#0a202b;box-shadow:0 20px 70px #0006}.drive-visual svg{display:block;width:100%;height:auto}.drive-visual p{padding:0 10px;color:#9bb6bf;font-size:13px;line-height:1.6}.feature-icon{color:#79edcf;background:#43dcc718;border-color:#43dcc744}.primary{background:linear-gradient(100deg,#126858,#167683)}.drive-status{display:flex;gap:10px;flex-wrap:wrap;padding:10px}.drive-status span{font-size:12px;padding:8px 10px;border-radius:9px;background:#102f36;color:#9eebdc}.hero{gap:32px;grid-template-columns:1fr 1.15fr}@media(max-width:800px){.hero{grid-template-columns:1fr}.drive-label{margin-top:20px}}</style></head>
+<body><div class="wrap"><header class="top"><a class="brand" href="./" aria-label="Về TAstore"><span class="brand-mark tastore-logo" aria-hidden="true"><b>T</b><i>A</i></span><span class="brand-name"><b>T</b><i>A</i><em>store</em></span></a><a class="back" href="./#products">← Tất cả sản phẩm</a></header><nav class="product-nav" aria-label="Các sản phẩm TA"><a href="./#products">Tất cả</a><a href="connectta.html">ConnectTA</a><a href="bubbleta.html">BubbleTA</a><a href="multita.html">MultiTA</a><a href="cleanta.html">CleanTA</a><a href="hometa.html">HomeTA</a><a href="driveta.html" aria-current="page">DriveTA</a><a href="./#support">Hỗ trợ</a></nav>
+<main><section class="hero"><div><div class="crumb"><a href="./">TAstore</a> / Sản phẩm / DriveTA</div><div class="drive-label"><img src="assets/driveta-icon.svg" alt="Logo DriveTA" width="58" height="58"><span>DriveTA</span></div><div class="badges"><span>Camera hành trình</span><span class="status">Đang phát triển</span></div><div class="compat-summary"><p><strong>Hỗ trợ</strong> Rootless/Roothide · iOS 15–16</p><p><strong>Đang phát triển</strong> iOS 17, 18–26.0</p></div><h1>Thêm góc nhìn.<br><span>Thêm chủ động.</span></h1><p class="lead">DriveTA hướng đến việc dùng hình ảnh từ camera hành trình của xe để phân tích tình huống trên đường, cung cấp thêm thông tin và hỗ trợ người lái quan sát trong mỗi hành trình.</p><div class="actions"><a class="button primary" href="#features">Khám phá DriveTA ↓</a><a class="button secondary" href="#compatibility">Thông tin phát triển</a></div></div><div class="drive-visual"><svg viewBox="0 0 640 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Minh họa DriveTA phân tích hình ảnh đường đi từ camera hành trình">
+<defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#183c50"/><stop offset="1" stop-color="#6f9399"/></linearGradient><linearGradient id="road" x2="0" y2="1"><stop stop-color="#304554"/><stop offset="1" stop-color="#101e2b"/></linearGradient></defs>
+<rect width="640" height="380" rx="20" fill="url(#sky)"/><circle cx="497" cy="83" r="32" fill="#d5e5c4" opacity=".55"/>
+<path d="m0 171 70-66 87 51 77-30 86 47 76-43 87 35 74-57 83 65v92H0Z" fill="#23424b"/>
+<path d="M0 380 269 171h102L640 380Z" fill="url(#road)"/>
+<path d="M279 177 118 380M361 177 529 380" stroke="#e5f5f4" stroke-width="5" opacity=".65"/>
+<path d="M315 191 300 380M333 191 348 380" stroke="#fff" stroke-width="4" stroke-dasharray="18 20" opacity=".7"/>
+<path d="m281 189-116 171h310L359 189" fill="#43dcc7" fill-opacity=".10" stroke="#43dcc7" stroke-width="2"/>
+<rect x="291" y="209" width="61" height="48" rx="9" fill="#829fab"/><path d="m303 217-5 16h47l-5-16Z" fill="#1a3342"/><path d="M298 247h11m25 0h11" stroke="#ff8756" stroke-width="4"/>
+<rect x="280" y="196" width="83" height="73" rx="8" fill="none" stroke="#43dcc7" stroke-width="2"/><path d="M362 205h33l19-19" fill="none" stroke="#43dcc7" stroke-width="2"/>
+<rect x="398" y="153" width="184" height="37" rx="9" fill="#061722" fill-opacity=".9"/><text x="411" y="177" fill="#8ff4df" font-family="Arial,sans-serif" font-size="15">Vùng phân tích minh họa</text>
+<rect x="18" y="18" width="234" height="34" rx="10" fill="#061722" fill-opacity=".8"/><circle cx="35" cy="35" r="4" fill="#ff8a49"/><text x="48" y="40" font-family="Arial,sans-serif" font-size="13" fill="#e8f6f6">DRIVETA · Ý TƯỞNG GIAO DIỆN</text>
+<rect x="18" y="324" width="604" height="38" rx="10" fill="#061722" fill-opacity=".88"/><text x="33" y="348" font-family="Arial,sans-serif" font-size="14" fill="#d7ecec">Camera hành trình → Phân tích hình ảnh → Hỗ trợ người lái</text></svg><div class="drive-status"><span>Nguồn hình: camera hành trình</span><span>Giao diện minh họa</span></div><p>Khung nhận diện và vùng đường chỉ minh họa định hướng thiết kế, chưa phải kết quả phân tích thực tế.</p></div></section>
+<section class="section" id="features"><div class="kicker">Định hướng sản phẩm</div><h2>Từ hình ảnh đến thông tin hữu ích</h2><p class="section-intro">Khai thác góc nhìn sẵn có từ camera hành trình để phát triển các công cụ hỗ trợ quan sát, với thông tin rõ ràng và dễ nắm bắt.</p><div class="feature-grid"><article class="feature"><div class="feature-icon">◉</div><h3>Kết nối góc nhìn từ xe</h3><p>Hướng đến tiếp nhận hình ảnh từ camera hành trình tương thích để làm nguồn phân tích.</p></article><article class="feature"><div class="feature-icon">⌖</div><h3>Phân tích tình huống</h3><p>Nghiên cứu khả năng phân tích hình ảnh đường đi và những yếu tố xuất hiện trong khung hình.</p></article><article class="feature"><div class="feature-icon">↗</div><h3>Hỗ trợ người lái</h3><p>Hướng đến trình bày thông tin ngắn gọn, giúp người lái có thêm cơ sở quan sát và chủ động xử lý tình huống.</p></article></div></section>
+<section class="section"><div class="kicker">Luồng hoạt động dự kiến</div><h2>Một góc nhìn, ba bước xử lý</h2><div class="steps"><article class="step"><h3>Nhận hình ảnh</h3><p>Kết nối nguồn hình từ camera hành trình được hỗ trợ.</p></article><article class="step"><h3>Phân tích khung hình</h3><p>Xử lý hình ảnh để tìm thông tin liên quan đến tình huống trên đường.</p></article><article class="step"><h3>Hiển thị hỗ trợ</h3><p>Chuyển kết quả thành thông tin dễ hiểu cho người lái.</p></article></div></section>
+<section class="section" id="compatibility"><div class="kicker">Trạng thái phát triển</div><h2>Đang xây dựng và kiểm thử</h2><div class="info-grid"><div class="info"><h3>Kết nối & thiết bị</h3><div class="info-row"><span>Camera hỗ trợ</span><span>Chưa công bố danh sách</span></div><div class="info-row"><span>Hỗ trợ</span><span>Rootless/Roothide · iOS 15–16</span></div><div class="info-row"><span>Đang phát triển</span><span>iOS 17, 18–26.0</span></div><div class="info-row"><span>Nơi hiển thị kết quả</span><span>Đang nghiên cứu</span></div></div><div class="info"><h3>Phát hành</h3><div class="info-row"><span>Trạng thái</span><span class="pending">Đang phát triển</span></div><div class="info-row"><span>Độ chính xác / độ trễ</span><span>Chưa có số liệu kiểm thử</span></div><div class="info-row"><span>Cài đặt</span><span>Chưa mở phát hành</span></div></div></div><p class="note">DriveTA được định hướng là công cụ hỗ trợ thông tin, không điều khiển xe và không thay thế việc quan sát hay quyết định của người lái.</p></section>
+<section class="section"><div class="kicker">Hỏi đáp</div><h2>Trước khi DriveTA ra mắt</h2><div class="faq"><details><summary>Camera nào cũng dùng được không?</summary><p>Chưa thể xác nhận. Khả năng lấy hình ảnh phụ thuộc vào mẫu camera và phương thức kết nối; danh sách hỗ trợ sẽ được công bố sau khi kiểm thử.</p></details><details><summary>DriveTA đã nhận diện được những gì?</summary><p>Hiện trang này giới thiệu định hướng sản phẩm. Từng khả năng phân tích và kết quả kiểm thử sẽ được cập nhật khi sẵn sàng.</p></details></div></section></main><footer class="footer"><span>TAstore · DRIVE SMARTER, ENJOY MORE</span><a href="./#products">← Về cửa hàng</a></footer></div></body></html>
