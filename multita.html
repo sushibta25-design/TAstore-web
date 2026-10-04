@@ -108,8 +108,8 @@ h2{font-size:30px;letter-spacing:-.035em;margin:9px 0 10px}
 <div class="badges"><span>CarPlay</span><span>Đa nhiệm</span><span class="status">Đang hoàn thiện</span></div><div class="compat-summary"><p><strong>Hỗ trợ</strong> Rootless/Roothide · iOS 15–16</p><p><strong>Đang phát triển</strong> iOS 17, 18–26.0</p></div>
 <h1>Hai ứng dụng.<br><span>Một màn hình.</span></h1>
 <p class="lead">MultiTA đưa hai ứng dụng lên cùng màn hình CarPlay để bạn có thể theo dõi bản đồ và sử dụng ứng dụng thứ hai trong cùng một phiên.</p>
-<div class="actions"><a class="button primary" href="#features">Khám phá tính năng ↓</a><a class="button secondary" href="./#products">Quay lại TAstore</a></div>
-<p class="note">Trang giới thiệu bản thử nghiệm. Phiên bản và khả năng tương thích sẽ được cập nhật theo từng bản phát hành.</p>
+<div class="actions"><a class="button primary" href="https://api.tastore.app/account/register/">Đăng ký trải nghiệm</a><a class="button secondary" href="https://api.tastore.app/account/">Tài khoản của tôi</a><a class="button secondary" href="#features">Khám phá tính năng ↓</a></div>
+<p class="note">TAstore duyệt tài khoản và cấp lượt tải thủ công. Đăng ký tài khoản chưa cấp quyền tải hoặc sử dụng MultiTA.</p>
 </div>
 <div class="preview" aria-label="Hình minh họa MultiTA chạy hai ứng dụng song song">
 <div class="screen">
@@ -157,10 +157,22 @@ h2{font-size:30px;letter-spacing:-.035em;margin:9px 0 10px}
 <div class="info"><h3>Phiên bản và cài đặt</h3>
 <div class="info-row"><span>Trạng thái</span><span class="pending">Đang hoàn thiện</span></div>
 <div class="info-row"><span>Phiên bản mới nhất</span><span>Cập nhật sau khi chốt build</span></div>
-<div class="info-row"><span>Cài qua Sileo</span><span>Cấu hình gói sẽ bổ sung tại đây</span></div>
+<div class="info-row"><span>Cài qua Sileo</span><span>Từ tài khoản được TAstore duyệt và cấp lượt tải</span></div>
+<div class="info-row"><span>Kích hoạt</span><span>Nhập mã TAstore cấp trong MultiTA License</span></div>
 </div>
 </div>
 <p class="note">Thông tin tương thích chỉ được đánh dấu hỗ trợ sau khi kiểm thử trên phiên bản iOS và môi trường jailbreak tương ứng.</p>
+</section>
+
+<section class="section" id="trial">
+<div class="kicker">Trải nghiệm MultiTA</div><h2>Đăng ký, chờ duyệt và kích hoạt</h2>
+<p class="section-intro">TAstore đang cấp quyền trải nghiệm thủ công. Lượt tải Sileo và mã license được cấp riêng.</p>
+<div class="steps">
+<article class="step"><h3>Đăng ký tài khoản</h3><p><a href="https://api.tastore.app/account/register/">Tạo tài khoản TAstore</a>. Tài khoản mới ở trạng thái chờ duyệt.</p></article>
+<article class="step"><h3>Cài qua Sileo</h3><p>Sau khi được duyệt và cấp lượt tải, mở <a href="https://api.tastore.app/account/">Tài khoản của tôi</a> trên iPhone đã jailbreak. Bấm Thêm nguồn vào Sileo rồi cài MultiTA.</p></article>
+<article class="step"><h3>Kích hoạt license</h3><p>Nhận mã từ TAstore. Kết nối CarPlay, mở khóa iPhone và bật mạng, rồi mở MultiTA License để nhập mã và kích hoạt.</p></article>
+</div>
+<p class="note">Mỗi lượt cấp cho phép một lượt tải gói hoàn tất từ server. Nếu lượt tải hết hạn hoặc cần tải lại, liên hệ TAstore để được cấp lượt mới.</p>
 </section>
 
 <section class="section" id="faq">
@@ -169,7 +181,9 @@ h2{font-size:30px;letter-spacing:-.035em;margin:9px 0 10px}
 <details><summary>MultiTA dùng để làm gì?</summary><p>MultiTA sắp xếp hai ứng dụng song song trên một màn hình CarPlay.</p></details>
 <details><summary>Có cần jailbreak không?</summary><p>Có. MultiTA là tweak dành cho iPhone đã jailbreak.</p></details>
 <details><summary>Ứng dụng nào cũng chia đôi được?</summary><p>Khả năng hiển thị phụ thuộc vào ứng dụng và phiên bản iOS. Danh sách đã kiểm thử sẽ được ghi theo từng bản phát hành.</p></details>
-<details><summary>Khi nào có thể cài?</summary><p>Hướng dẫn và nút cài Sileo sẽ được bật khi gói phát hành chính thức được đưa lên TAstore.</p></details>
+<details><summary>Khi nào có thể cài?</summary><p>Bạn có thể đăng ký tài khoản để xin trải nghiệm. Chỉ tài khoản được TAstore duyệt và cấp lượt tải mới có nút Thêm nguồn vào Sileo trong trang tài khoản.</p></details>
+<details><summary>Đã cài MultiTA là dùng được ngay?</summary><p>Bạn cần mã license do TAstore cấp. Mã được gắn với iPhone kích hoạt; cài gói qua Sileo chưa tự cấp quyền sử dụng.</p></details>
+<details><summary>Kích hoạt có cần kết nối CarPlay?</summary><p>Bản trải nghiệm hiện tại cần kết nối CarPlay khi kích hoạt. Giữ iPhone mở khóa và có mạng, mở MultiTA License rồi nhập mã được cấp.</p></details>
 </div>
 </section>
 </main>
